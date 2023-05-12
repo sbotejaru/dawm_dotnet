@@ -1,2 +1,2 @@
-# dawm_dotnet
+# Hotel Management
 Final project for DAWM
