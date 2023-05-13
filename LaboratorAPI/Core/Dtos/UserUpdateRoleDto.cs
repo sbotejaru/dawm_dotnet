@@ -10,6 +10,8 @@ namespace Core.Dtos
 {
     public class UserUpdateRoleDto
     {
+        public int Id { get; set; }
+
         [Required]
         public RoleType Role { get; set; }
     }

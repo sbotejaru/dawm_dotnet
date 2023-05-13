@@ -9,6 +9,8 @@ namespace Core.Dtos
 {
     public class AdminUpdateDto
     {
+        public int Id { get; set; }
+
         [Required]
         public string Name { get; set; }
     }
