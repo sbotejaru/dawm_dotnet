@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Conventions;
 
-namespace DataLayer.Entities
+namespace DataLayer.Entities;
+
+public class Role : BaseEntity
 {
-    internal class Role
-    {
-    }
+    public string RoleName { get; set; }
 }
+

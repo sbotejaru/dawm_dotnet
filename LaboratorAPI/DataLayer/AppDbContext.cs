@@ -8,7 +8,7 @@ namespace DataLayer
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder
-                    .UseSqlServer("Server=localhost;Database=lab_dawm;User Id=myuser;Password=123456;")
+                    .UseSqlServer("Server=localhost;Database=Hotel;User Id=myuser;Password=123456;")
                     .LogTo(Console.WriteLine);
         }
 

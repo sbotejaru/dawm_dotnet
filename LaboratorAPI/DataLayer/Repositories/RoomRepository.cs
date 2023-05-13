@@ -1,12 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using DataLayer.Entities;
+using DataLayer.Enums;
+using Microsoft.EntityFrameworkCore;
 
 namespace DataLayer.Repositories
 {
-    internal class RoomRepository
+    public class RoomRepository : RepositoryBase<Room>
     {
+        private readonly AppDbContext dbContext;
+
+        public RoomRepository(AppDbContext dbContext) : base(dbContext)
+        {
+            this.dbContext = dbContext;
+        }
     }
 }
