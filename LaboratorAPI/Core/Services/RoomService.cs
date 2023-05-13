@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Core.Services
 {
-    internal class RoomService
+    public class RoomService
     {
         private readonly UnitOfWork unitOfWork;
 
