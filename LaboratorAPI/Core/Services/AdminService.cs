@@ -1,4 +1,6 @@
-﻿using DataLayer;
+﻿using Core.Dtos;
+using DataLayer;
+using DataLayer.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +16,13 @@ namespace Core.Services
         public AdminService(UnitOfWork unitOfWork)
         {
             this.unitOfWork = unitOfWork;
+        }
+
+        public List<Admin> GetAll()
+        {
+            var results = unitOfWork.Admins.GetAll();
+
+            return results;
         }
     }
 }
