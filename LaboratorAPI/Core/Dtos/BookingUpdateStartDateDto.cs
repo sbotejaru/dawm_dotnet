@@ -9,6 +9,8 @@ namespace Core.Dtos
 {
     public class BookingUpdateStartDateDto
     {
+        public int ID { get; set; }
+
         [Required]
         public DateTime DateFrom { get; set; }
 

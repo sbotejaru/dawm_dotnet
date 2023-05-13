@@ -9,6 +9,8 @@ namespace Core.Dtos
 {
     public class BookingUpdateRoomDto
     {
+        public int ID { get; set; }
+
         [Required]
         public int RoomID { get; set; }
 

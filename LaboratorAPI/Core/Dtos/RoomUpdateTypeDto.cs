@@ -9,6 +9,8 @@ namespace Core.Dtos
 {
     public class RoomUpdateTypeDto
     {
+        public int ID { get; set; }
+
         [Required]
         public string RoomType { get; set; }
     }

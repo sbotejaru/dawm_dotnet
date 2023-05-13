@@ -9,6 +9,8 @@ namespace Core.Dtos
 {
     public class RoomUpdatePriceDto
     {
+        public int ID { get; set; }
+
         [Required]
         public float Price { get; set; }
 

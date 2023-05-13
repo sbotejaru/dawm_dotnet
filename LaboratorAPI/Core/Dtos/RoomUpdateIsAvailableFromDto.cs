@@ -9,6 +9,8 @@ namespace Core.Dtos
 {
     public class RoomUpdateIsAvailableFromDto
     {
+        public int ID { get; set; }
+
         [Required]
         public DateTime IsAvailableFrom { get; set; }
     }
