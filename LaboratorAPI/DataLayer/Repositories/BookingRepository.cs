@@ -12,5 +12,45 @@ namespace DataLayer.Repositories
         {
             this.dbContext = dbContext;
         }
+
+        public List<Booking> GetBookingsByCustomerID(int customerID)
+        {
+            var result = dbContext.Bookings
+                .Where(e => e.CustomerID == customerID
+                && e.Deleted == false)
+                .ToList();
+
+            return result;
+        }
+
+        public List<Booking> GetBookingsByRoomID(int roomID)
+        {
+            var result = dbContext.Bookings
+                .Where(e => e.RoomID == roomID
+                && !e.Deleted)
+                .ToList();
+
+            return result;
+        }
+
+        public List<Booking> GetBookingsAfterStartDate(DateTime date)
+        {
+            var result = dbContext.Bookings
+                .Where(e => e.DateFrom >= date.Date
+                && !e.Deleted)
+                .ToList();
+
+            return result;
+        }
+
+        public List<Booking> GetBookingsByCurrentDate(DateTime currentDate)
+        {
+            var result = dbContext.Bookings
+                .Where(e => e.DateFrom == currentDate.Date
+                && !e.Deleted)
+                .ToList();
+
+            return result;
+        }
     }
 }
