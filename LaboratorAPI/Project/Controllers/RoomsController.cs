@@ -137,7 +137,7 @@ namespace Project.Controllers
         }
 
 
-        [HttpPatch("/delete/{roomId}")]
+        [HttpPatch("/delete-room/{roomId}")]
         public ActionResult<bool> DeleteRoom(int roomId)
         {
             var result = RoomService.DeleteRoom(roomId);

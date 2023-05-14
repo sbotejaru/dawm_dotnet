@@ -39,9 +39,9 @@ namespace Project.Controllers
         }
 
         [HttpGet("/get-by-username/{username}")]
-        public ActionResult<User> GetUserByUsername(string UserName) 
+        public ActionResult<User> GetUserByUsername(string username) 
         {
-            var result = UserService.GetUserByUsername(UserName);
+            var result = UserService.GetUserByUsername(username);
 
             if (result == null)
             {
@@ -103,7 +103,7 @@ namespace Project.Controllers
 
         }
 
-        [HttpPatch("/delete/{userId}")]
+        [HttpPatch("/delete-user/{userId}")]
         public ActionResult<bool> DeleteUser(int userId)
         {
             var result = UserService.DeleteUser(userId);

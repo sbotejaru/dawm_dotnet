@@ -72,7 +72,7 @@ namespace Project.Controllers
             return Ok(result);
         }
 
-        [HttpPatch("/delete/{customerId}")]
+        [HttpPatch("/delete-customer/{customerId}")]
         public ActionResult<bool> DeleteCustomer(int customerId)
         {
             var result = customerService.DeleteCustomer(customerId);

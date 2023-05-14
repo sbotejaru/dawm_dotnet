@@ -37,7 +37,7 @@ namespace Project.Controllers
             return Ok(result);
         }
 
-        [HttpPatch("/update-room")]
+        [HttpPatch("/update-booking-room")]
         public ActionResult<bool> UpdateBookingRoom([FromBody] BookingUpdateRoomDto bookingUpdateModel)
         {
             var result = bookingService.UpdateBookingRoom(bookingUpdateModel);
@@ -50,7 +50,7 @@ namespace Project.Controllers
             return Ok(result);
         }
 
-        [HttpPatch("/update-start-date")]
+        [HttpPatch("/update-booking-start-date")]
         public ActionResult<bool> UpdateBookingStartDate([FromBody] BookingUpdateStartDateDto bookingUpdateModel)
         {
             var result = bookingService.UpdateBookingStartDate(bookingUpdateModel);
@@ -63,7 +63,7 @@ namespace Project.Controllers
             return Ok(result);
         }
 
-        [HttpPatch("/update-end-date")]
+        [HttpPatch("/update-booking-end-date")]
         public ActionResult<bool> UpdateBookingEndDate([FromBody] BookingUpdateEndDateDto bookingUpdateModel)
         {
             var result = bookingService.UpdateBookingEndDate(bookingUpdateModel);
@@ -89,7 +89,7 @@ namespace Project.Controllers
             return Ok(result);
         }
 
-        [HttpPatch("/delete/{bookingId}")]
+        [HttpPatch("/delete-booking/{bookingId}")]
         public ActionResult<bool> DeleteBooking(int bookingId)
         {
             var result = bookingService.DeleteBooking(bookingId);
