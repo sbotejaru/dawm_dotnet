@@ -1,5 +1,6 @@
 ﻿using DataLayer;
 using DataLayer.Entities;
+using DataLayer.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,6 +23,11 @@ namespace Core.Services
             var result = unitOfWork.Roles.GetAll();
 
             return result;
+        }
+
+        public Role GetById(RoleType roleId)
+        {
+            return unitOfWork.Roles.GetById((int)roleId);
         }
     }
 }
