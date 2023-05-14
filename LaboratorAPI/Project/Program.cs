@@ -37,8 +37,9 @@ builder.Services.AddAuthorization();
 
 var app = builder.Build();
 
-app.UseMiddleware<LoggingMiddleware>();
 app.UseMiddleware<ExceptionHandlingMiddleware>();
+app.UseMiddleware<LoggingMiddleware>();
+app.UseDeveloperExceptionPage();
 
 app.UseSwagger(c =>
 {
