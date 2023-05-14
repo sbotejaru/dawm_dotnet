@@ -108,5 +108,10 @@ namespace Core.Services
             return true;
         }
 
+        public User GetById(int UserId)
+        {
+            return unitOfWork.Users.GetById(UserId);
+        }
+
     }
 }

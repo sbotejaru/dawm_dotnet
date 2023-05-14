@@ -75,5 +75,10 @@ namespace Core.Services
 
             return true;
         }
+
+        public Customer GetById(int CustomerId)
+        {
+            return unitOfWork.Customers.GetById(CustomerId);
+        }
     }
 }

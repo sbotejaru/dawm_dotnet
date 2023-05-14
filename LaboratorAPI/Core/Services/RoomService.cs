@@ -139,5 +139,10 @@ namespace Core.Services
             return true;
         }
 
+        public Room GetById(int RoomId)
+        {
+            return unitOfWork.Rooms.GetById(RoomId);
+        }
+
     }
 }

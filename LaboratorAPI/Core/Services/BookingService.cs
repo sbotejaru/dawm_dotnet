@@ -150,5 +150,9 @@ namespace Core.Services
             return true;
         }
 
+        public Booking GetById(int BookingId)
+        {
+            return unitOfWork.Bookings.GetById(BookingId);
+        }
     }
 }

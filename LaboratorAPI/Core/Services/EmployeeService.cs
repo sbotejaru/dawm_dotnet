@@ -76,5 +76,10 @@ namespace Core.Services
 
             return true;
         }
+
+        public Employee GetById(int EmployeeId)
+        {
+            return unitOfWork.Employees.GetById(EmployeeId);
+        }
     }
 }
