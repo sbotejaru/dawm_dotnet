@@ -23,8 +23,8 @@ namespace Core.Services
             if (payload == null) return null;
 
             var existingRoom = unitOfWork.Rooms.GetById(payload.RoomID);
-            if (existingRoom == null) return null;        
-            
+            if (existingRoom == null) return null;
+
             var existingCustomer = unitOfWork.Rooms.GetById(payload.CustomerID);
             if (existingCustomer == null) return null;
 
@@ -69,5 +69,75 @@ namespace Core.Services
         {
             return unitOfWork.Bookings.GetBookingsByCurrentDate(date);
         }
+
+        public bool UpdateBooking(BookingUpdateDto payload)
+        {
+            if (payload == null)
+                return false;
+
+            var roomRes = unitOfWork.Rooms.GetById(payload.RoomID);
+            if (roomRes == null)
+                return false;
+
+            var result = unitOfWork.Bookings.GetById(payload.ID);
+            if (result == null) return false;
+
+            result.TotalPrice = payload.TotalPrice;
+            result.DateFrom = payload.DateFrom;
+            result.DateTo = payload.DateTo;
+            result.RoomID = payload.RoomID;
+
+            return true;
+        }
+
+        public bool UpdateBookingEndDate(BookingUpdateEndDateDto payload)
+        {
+            if (payload == null)
+                return false;
+
+            var result = unitOfWork.Bookings.GetById(payload.ID);
+            if (result == null || payload.DateTo < result.DateFrom)
+                return false;
+
+            result.DateTo = payload.DateTo;
+            result.TotalPrice = payload.TotalPrice;
+
+            return true;
+        }
+
+        public bool UpdateBookingRoom(BookingUpdateRoomDto payload)
+        {
+            if (payload == null)
+                return false;
+
+            var roomRes = unitOfWork.Rooms.GetById(payload.RoomID);
+            if (roomRes == null)
+                return false;
+
+            var result = unitOfWork.Bookings.GetById(payload.ID);
+            if (result == null)
+                return false;
+
+            result.RoomID = payload.RoomID;
+            result.TotalPrice = payload.TotalPrice;
+
+            return true;
+        }
+
+        public bool UpdateBookingStartDate(BookingUpdateStartDateDto payload)
+        {
+            if (payload == null)
+                return false;
+
+            var result = unitOfWork.Bookings.GetById(payload.ID);
+            if (result == null || result.DateTo < payload.DateFrom)
+                return false;
+
+            result.DateFrom = payload.DateFrom;
+            result.TotalPrice = payload.TotalPrice;
+
+            return true;
+        }
+
     }
 }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Core.Dtos
 {
-    internal class BookingUpdateDto
+    public class BookingUpdateDto
     {
         public int ID { get; set; }
 

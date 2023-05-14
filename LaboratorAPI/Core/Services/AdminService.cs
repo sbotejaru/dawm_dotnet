@@ -29,5 +29,18 @@ namespace Core.Services
         {
             return unitOfWork.Admins.GetAdminByUserID(userID);
         }
+
+        public bool UpdateAdminName(AdminUpdateDto payload)
+        {
+            if (payload == null || payload.Name == null)
+                return false;
+
+            var result = unitOfWork.Admins.GetById(payload.Id);
+            if (result == null) return false;
+
+            result.Name = payload.Name;
+
+            return true;
+        }
     }
 }

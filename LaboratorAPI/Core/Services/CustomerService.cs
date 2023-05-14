@@ -50,5 +50,19 @@ namespace Core.Services
         {
             return unitOfWork.Customers.GetCustomerByUserID(userID);
         }
+
+        public bool UpdateCustomerName(CustomerUpdateDto payload)
+        {
+            if (payload == null || payload.Name == null)
+                return false;
+
+            var result = unitOfWork.Customers.GetById(payload.Id);
+            if (result == null)
+                return false;
+
+            result.Name = payload.Name;
+
+            return true;
+        }
     }
 }
