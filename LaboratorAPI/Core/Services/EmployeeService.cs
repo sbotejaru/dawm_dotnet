@@ -1,6 +1,7 @@
 ﻿using Core.Dtos;
 using DataLayer;
 using DataLayer.Entities;
+using Microsoft.EntityFrameworkCore.Query;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -61,6 +62,17 @@ namespace Core.Services
                 return false;
 
             result.Name = payload.Name;
+
+            return true;
+        }
+
+        public bool DeleteEmployee(int employeeID)
+        {
+            var result = unitOfWork.Employees.GetById(employeeID);
+            if (result == null)
+                return false;
+
+            result.Deleted = true;
 
             return true;
         }
