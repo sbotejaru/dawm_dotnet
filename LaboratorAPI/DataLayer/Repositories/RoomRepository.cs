@@ -53,5 +53,18 @@ namespace DataLayer.Repositories
 
             return results;
         }
+
+
+        public Room GetRoomByRoomNumber(int roomNumber) 
+        {
+            var results = dbContext.Rooms
+                .Where(e =>
+                e.RoomNr == roomNumber
+                &&
+                !e.Deleted)
+                .FirstOrDefault();
+
+            return results;
+        }
     }
 }

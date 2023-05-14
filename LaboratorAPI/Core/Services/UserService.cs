@@ -64,5 +64,38 @@ namespace Core.Services
 
             return user;
         }
+
+        public bool UpdateUserPassword (UserUpdatePasswordDTO payload)
+        {
+            if (payload == null || payload.Password == null || payload.Password == "")
+            {
+                return false;
+            }
+
+            var result = unitOfWork.Users.GetById(payload.Id);
+            if (result == null) return false;
+
+            result.Password = payload.Password;
+            
+
+            return true;
+        }
+
+        public bool UpdateUserRole (UserUpdateRoleDto payload)
+        {
+            if (payload == null || (int)payload.Role > 3 || (int)payload.Role < 0)
+            {
+                return false;
+            }
+
+            var result = unitOfWork.Users.GetById(payload.Id);
+            if (result == null) return false;
+
+            result.RoleID = payload.Role;
+
+            return true;
+
+        }
+
     }
 }
