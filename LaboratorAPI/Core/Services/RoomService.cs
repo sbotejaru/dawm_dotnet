@@ -128,5 +128,16 @@ namespace Core.Services
 
         }
 
+        public bool DeleteRoom(int RoomID)
+        {
+            var result = unitOfWork.Rooms.GetById(RoomID);
+            if (result == null)
+                return false;
+
+            result.Deleted = true;
+
+            return true;
+        }
+
     }
 }

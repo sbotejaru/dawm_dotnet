@@ -97,5 +97,16 @@ namespace Core.Services
 
         }
 
+        public bool DeleteUser(int UserID)
+        {
+            var result = unitOfWork.Users.GetById(UserID);
+            if (result == null)
+                return false;
+
+            result.Deleted = true;
+
+            return true;
+        }
+
     }
 }
