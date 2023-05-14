@@ -1,6 +1,7 @@
 ﻿using Core.Dtos;
 using DataLayer;
 using DataLayer.Entities;
+using DataLayer.Enums;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -41,6 +42,27 @@ namespace Core.Services
             unitOfWork.SaveChanges();
 
             return payload;
+        }
+
+        public User GetUserByUsername(string username)
+        {
+            var user = unitOfWork.Users.GetByUsername(username);
+
+            return user;
+        }
+
+        public List<User> GetUsersByRole(RoleType role)
+        {
+            var users = unitOfWork.Users.GetByRole(role);
+
+            return users;
+        }
+
+        public User GetUserByUsernameAndPassword(string username, string password)
+        {
+            var user = unitOfWork.Users.GetByUsernameAndPassword(username, password);
+
+            return user;
         }
     }
 }

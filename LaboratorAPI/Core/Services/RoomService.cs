@@ -42,5 +42,25 @@ namespace Core.Services
 
             return payload;
         }
+
+        public List<Room> GetAllFreeRooms()
+        {
+            return unitOfWork.Rooms.GetAllFreeRooms();
+        }
+
+        public List<Room> GetAllFreeRoomsForDate(DateTime date)
+        {
+            return unitOfWork.Rooms.GetAllFreeRoomsForDate(date);
+        }
+
+        public List<Room> GetAllFreeRoomsByType(string roomType)
+        {
+            return unitOfWork.Rooms.GetAllFreeRoomsByType(roomType);
+        }
+
+        public List<Room> GetAllFreeRoomsCheaperThan(float price)
+        {
+            return unitOfWork.Rooms.GetAllFreeRoomsCheaperThan(price);
+        }
     }
 }

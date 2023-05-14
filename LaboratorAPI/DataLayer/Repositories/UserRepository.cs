@@ -35,15 +35,14 @@ namespace DataLayer.Repositories
 
         }
 
-        public User GetByRole(RoleType userRole)
+        public List<User> GetByRole(RoleType userRole)
         {
             var results = dbContext.Users
                 .Where(e => e.RoleID == userRole
                 && e.Deleted == false)
-                .FirstOrDefault();
+                .ToList();
 
             return results;
         }
-
     }
 }
