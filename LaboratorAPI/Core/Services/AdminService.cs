@@ -39,7 +39,7 @@ namespace Core.Services
             if (result == null) return false;
 
             result.Name = payload.Name;
-
+            unitOfWork.SaveChanges();
             return true;
         }
 

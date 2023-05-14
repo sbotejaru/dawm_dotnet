@@ -92,7 +92,7 @@ namespace Core.Services
             if (result == null) return false;
 
             result.RoleID = payload.Role;
-
+            unitOfWork.SaveChanges();
             return true;
 
         }
@@ -104,7 +104,7 @@ namespace Core.Services
                 return false;
 
             result.Deleted = true;
-
+            unitOfWork.SaveChanges();
             return true;
         }
 

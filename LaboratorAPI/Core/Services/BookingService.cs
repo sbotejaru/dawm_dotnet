@@ -86,7 +86,7 @@ namespace Core.Services
             result.DateFrom = payload.DateFrom;
             result.DateTo = payload.DateTo;
             result.RoomID = payload.RoomID;
-
+            unitOfWork.SaveChanges();
             return true;
         }
 
@@ -101,7 +101,7 @@ namespace Core.Services
 
             result.DateTo = payload.DateTo;
             result.TotalPrice = payload.TotalPrice;
-
+            unitOfWork.SaveChanges();
             return true;
         }
 
@@ -120,7 +120,7 @@ namespace Core.Services
 
             result.RoomID = payload.RoomID;
             result.TotalPrice = payload.TotalPrice;
-
+            unitOfWork.SaveChanges();
             return true;
         }
 
@@ -135,7 +135,7 @@ namespace Core.Services
 
             result.DateFrom = payload.DateFrom;
             result.TotalPrice = payload.TotalPrice;
-
+            unitOfWork.SaveChanges();
             return true;
         }
 
@@ -146,7 +146,7 @@ namespace Core.Services
                 return false;
 
             result.Deleted = true;
-
+            unitOfWork.SaveChanges();
             return true;
         }
 

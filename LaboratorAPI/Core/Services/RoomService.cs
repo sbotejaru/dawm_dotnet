@@ -74,7 +74,7 @@ namespace Core.Services
             if (result == null) return false;
 
             result.IsAvailableFrom = payload.IsAvailableFrom;
-
+            unitOfWork.SaveChanges();
             return true;
 
 
@@ -91,7 +91,7 @@ namespace Core.Services
             if (result == null) return false;
 
             result.RoomNr = payload.RoomNr;
-
+            unitOfWork.SaveChanges();
             return true;
 
         }
@@ -107,7 +107,7 @@ namespace Core.Services
             if (result == null) return false;
 
             result.Price = payload.Price;
-
+            unitOfWork.SaveChanges();
             return true;
 
         }
@@ -123,7 +123,7 @@ namespace Core.Services
             if (result == null) return false;
 
             result.RoomType = payload.RoomType;
-
+            unitOfWork.SaveChanges();
             return true;
 
         }
@@ -135,7 +135,7 @@ namespace Core.Services
                 return false;
 
             result.Deleted = true;
-
+            unitOfWork.SaveChanges();
             return true;
         }
 

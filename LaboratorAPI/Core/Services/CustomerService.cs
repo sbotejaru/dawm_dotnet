@@ -61,7 +61,7 @@ namespace Core.Services
                 return false;
 
             result.Name = payload.Name;
-
+            unitOfWork.SaveChanges();
             return true;
         }
 
@@ -72,7 +72,7 @@ namespace Core.Services
                 return false;
 
             result.Deleted = true;
-
+            unitOfWork.SaveChanges();
             return true;
         }
 
