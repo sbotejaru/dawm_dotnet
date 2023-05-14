@@ -45,5 +45,10 @@ namespace Core.Services
 
             return results;
         }
+
+        public Employee GetByUserID(int userID)
+        {
+            return unitOfWork.Employees.GetEmployeeByUserID(userID);
+        }
     }
 }

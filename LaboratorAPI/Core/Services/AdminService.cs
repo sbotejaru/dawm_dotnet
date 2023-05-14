@@ -24,5 +24,10 @@ namespace Core.Services
 
             return results;
         }
+
+        public Admin GetByUserID(int userID)
+        {
+            return unitOfWork.Admins.GetAdminByUserID(userID);
+        }
     }
 }

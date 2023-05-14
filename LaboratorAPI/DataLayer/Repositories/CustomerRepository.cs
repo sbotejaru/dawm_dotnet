@@ -12,5 +12,15 @@ namespace DataLayer.Repositories
         {
             this.dbContext = dbContext;
         }
+
+        public Customer GetCustomerByUserID(int userID)
+        {
+            var result = dbContext.Customers
+                .Where(e => e.UserID == userID
+                && !e.Deleted)
+                .FirstOrDefault();
+
+            return result;
+        }
     }
 }

@@ -49,5 +49,25 @@ namespace Core.Services
 
             return results;
         }
+
+        public List<Booking> GetByCustomerID(int customerID)
+        {
+            return unitOfWork.Bookings.GetBookingsByCustomerID(customerID);
+        }
+
+        public List<Booking> GetByRoomID(int roomID)
+        {
+            return unitOfWork.Bookings.GetBookingsByRoomID(roomID);
+        }
+
+        public List<Booking> GetAllAfterStartDate(DateTime date)
+        {
+            return unitOfWork.Bookings.GetBookingsAfterStartDate(date);
+        }
+
+        public List<Booking> GetAllByDate(DateTime date)
+        {
+            return unitOfWork.Bookings.GetBookingsByCurrentDate(date);
+        }
     }
 }

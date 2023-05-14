@@ -12,5 +12,14 @@ namespace DataLayer.Repositories
         {
             this.dbContext = dbContext;
         }
+
+        public Admin GetAdminByUserID(int userID)
+        {
+            var result = dbContext.Admins
+                .Where(e => e.UserID == userID)
+                .FirstOrDefault();
+
+            return result;
+        }
     }
 }
