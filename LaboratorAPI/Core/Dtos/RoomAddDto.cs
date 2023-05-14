@@ -21,6 +21,6 @@ namespace Core.Dtos
         public bool Deleted { get; set; }
 
         [Required]
-        public float Price { get; set; }
+        public double Price { get; set; }
     }
 }

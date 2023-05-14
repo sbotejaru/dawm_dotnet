@@ -58,7 +58,7 @@ namespace Core.Services
             return unitOfWork.Rooms.GetAllFreeRoomsByType(roomType);
         }
 
-        public List<Room> GetAllFreeRoomsCheaperThan(float price)
+        public List<Room> GetAllFreeRoomsCheaperThan(double price)
         {
             return unitOfWork.Rooms.GetAllFreeRoomsCheaperThan(price);
         }

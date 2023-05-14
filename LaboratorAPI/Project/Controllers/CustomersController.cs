@@ -16,7 +16,7 @@ namespace Project.Controllers
             this.customerService = customerService;
         }
 
-        [HttpGet("/get-all")]
+        [HttpGet("/get-all-customers")]
         public ActionResult<List<Customer>> GetAll()
         {
             var result = customerService.GetAll();
@@ -24,7 +24,7 @@ namespace Project.Controllers
             return Ok(result);
         }
 
-        [HttpPatch("/update")]
+        [HttpPatch("/update-customer")]
         public ActionResult<bool> UpdateCustomerName([FromBody] CustomerUpdateDto customerUpdateModel)
         {
             var result = customerService.UpdateCustomerName(customerUpdateModel);
@@ -37,7 +37,7 @@ namespace Project.Controllers
             return Ok(result);
         }
 
-        [HttpGet("/get/{customerId}")]
+        [HttpGet("/get-customer/{customerId}")]
         public ActionResult<Customer> GetById(int customerId)
         {
             var result = customerService.GetById(customerId);
@@ -50,7 +50,7 @@ namespace Project.Controllers
             return Ok(result);
         }
 
-        [HttpPost("/add")]
+        [HttpPost("/add-customer")]
         public IActionResult Add([FromBody] CustomerAddDto payload)
         {
             var result = customerService.AddCustomer(payload);
@@ -61,7 +61,7 @@ namespace Project.Controllers
             return Ok(result);
         }
 
-        [HttpGet("/get-by-userid/{userId}")]
+        [HttpGet("/get-customer-by-userid/{userId}")]
         public ActionResult<Customer> GetByUserId(int userId)
         {
             var result = customerService.GetByUserID(userId);

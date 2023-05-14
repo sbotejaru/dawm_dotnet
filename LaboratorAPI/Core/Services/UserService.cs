@@ -76,7 +76,7 @@ namespace Core.Services
             if (result == null) return false;
 
             result.Password = payload.Password;
-            
+            unitOfWork.SaveChanges();
 
             return true;
         }

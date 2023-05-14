@@ -16,7 +16,7 @@ namespace Project.Controllers
             this.adminService = adminService;
         }
 
-        [HttpGet("/get-all")]
+        [HttpGet("/get-all-admins")]
         public ActionResult<List<Admin>> GetAll()
         {
             var result = adminService.GetAll();
@@ -24,7 +24,7 @@ namespace Project.Controllers
             return Ok(result);
         }
 
-        [HttpPatch("/update")]
+        [HttpPatch("/update-admin")]
         public ActionResult<bool> UpdateAdminName([FromBody] AdminUpdateDto adminUpdateModel)
         {
             var result = adminService.UpdateAdminName(adminUpdateModel);
@@ -37,7 +37,7 @@ namespace Project.Controllers
             return Ok(result);
         }
 
-        [HttpGet("/get/{adminId}")]
+        [HttpGet("/get-admin/{adminId}")]
         public ActionResult<Admin> GetById(int adminId)
         {
             var result = adminService.GetById(adminId);

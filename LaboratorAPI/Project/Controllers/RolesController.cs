@@ -16,7 +16,7 @@ namespace Project.Controllers
             this.RoleService = RoleService;
         }
 
-        [HttpGet("/get-all")]
+        [HttpGet("/get-all-roles")]
         public ActionResult<List<Role>> GetAll()
         {
             var result = RoleService.GetAll();
@@ -24,7 +24,7 @@ namespace Project.Controllers
             return Ok(result);
         }
 
-        [HttpGet("/get/{RoleId}")]
+        [HttpGet("/get-role/{RoleId}")]
         public ActionResult<Role> GetById(int RoleId)
         {
             var result = RoleService.GetById((DataLayer.Enums.RoleType)RoleId);

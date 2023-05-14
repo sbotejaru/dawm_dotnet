@@ -15,6 +15,6 @@ namespace Core.Dtos
         public int RoomID { get; set; }
 
         [Required]
-        public float TotalPrice { get; set; }
+        public double TotalPrice { get; set; }
     }
 }

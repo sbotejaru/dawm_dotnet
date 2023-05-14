@@ -16,7 +16,7 @@ namespace Project.Controllers
             this.RoomService = RoomService;
         }
 
-        [HttpPost("/add")]
+        [HttpPost("/add-room")]
         public IActionResult Add([FromBody]RoomAddDto payload) 
         {
             var result = RoomService.AddRoom(payload);
@@ -30,7 +30,7 @@ namespace Project.Controllers
 
         }
 
-        [HttpGet("/get-all")]
+        [HttpGet("/get-all-rooms")]
         public ActionResult<List<Room>> GetAll()
         {
             var result = RoomService.GetAll();
@@ -38,7 +38,7 @@ namespace Project.Controllers
             return Ok(result);
         }
 
-        [HttpGet("/get/{RoomId}")]
+        [HttpGet("/get-room/{RoomId}")]
         public ActionResult<Room> GetById(int RoomId)
         {
             var result = RoomService.GetById(RoomId);
@@ -76,7 +76,7 @@ namespace Project.Controllers
         }
 
         [HttpGet("/get-all-free-rooms-cheaper-than/{price}")]
-        public ActionResult<List<Room>> GetAllFreeRoomsCheaperThan(float price)
+        public ActionResult<List<Room>> GetAllFreeRoomsCheaperThan(double price)
         {
             var result = RoomService.GetAllFreeRoomsCheaperThan(price);
 

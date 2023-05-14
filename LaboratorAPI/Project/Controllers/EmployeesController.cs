@@ -16,7 +16,7 @@ namespace Project.Controllers
             this.employeeService = employeeService;
         }
 
-        [HttpGet("/get-all")]
+        [HttpGet("/get-all-employees")]
         public ActionResult<List<Employee>> GetAll()
         {
             var result = employeeService.GetAll();
@@ -24,7 +24,7 @@ namespace Project.Controllers
             return Ok(result);
         }
 
-        [HttpPatch("/update")]
+        [HttpPatch("/update-employee")]
         public ActionResult<bool> UpdateEmployeeName([FromBody] EmployeeUpdateDto employeeUpdateModel)
         {
             var result = employeeService.UpdateEmployeeName(employeeUpdateModel);
@@ -37,7 +37,7 @@ namespace Project.Controllers
             return Ok(result);
         }
 
-        [HttpGet("/get/{employeeId}")]
+        [HttpGet("/get-employee/{employeeId}")]
         public ActionResult<Employee> GetById(int employeeId)
         {
             var result = employeeService.GetById(employeeId);
@@ -50,7 +50,7 @@ namespace Project.Controllers
             return Ok(result);
         }
 
-        [HttpPost("/add")]
+        [HttpPost("/add-employee")]
         public IActionResult Add([FromBody] EmployeeAddDto payload)
         {
             var result = employeeService.AddEmployee(payload);
@@ -61,7 +61,7 @@ namespace Project.Controllers
             return Ok(result);
         }
 
-        [HttpGet("/get-by-userid/{userId}")]
+        [HttpGet("/get-employee-by-userid/{userId}")]
         public ActionResult<Employee> GetByUserId(int userId)
         {
             var result = employeeService.GetByUserID(userId);

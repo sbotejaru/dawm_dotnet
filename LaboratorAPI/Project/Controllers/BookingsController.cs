@@ -16,7 +16,7 @@ namespace Project.Controllers
             this.bookingService = bookingService;
         }
 
-        [HttpGet("/get-all")]
+        [HttpGet("/get-all-bookings")]
         public ActionResult<List<Booking>> GetAll()
         {
             var result = bookingService.GetAll();
@@ -24,7 +24,7 @@ namespace Project.Controllers
             return Ok(result);
         }
 
-        [HttpPatch("/update")]
+        [HttpPatch("/update-booking")]
         public ActionResult<bool> UpdateBookingName([FromBody] BookingUpdateDto bookingUpdateModel)
         {
             var result = bookingService.UpdateBooking(bookingUpdateModel);
@@ -76,7 +76,7 @@ namespace Project.Controllers
             return Ok(result);
         }
 
-        [HttpGet("/get/{bookingId}")]
+        [HttpGet("/get-booking/{bookingId}")]
         public ActionResult<Booking> GetById(int bookingId)
         {
             var result = bookingService.GetById(bookingId);
@@ -146,7 +146,7 @@ namespace Project.Controllers
             return Ok(result);
         }
 
-        [HttpPost("/add")]
+        [HttpPost("/add-booking")]
         public IActionResult Add([FromBody] BookingAddDto payload)
         {
             var result = bookingService.AddBooking(payload);

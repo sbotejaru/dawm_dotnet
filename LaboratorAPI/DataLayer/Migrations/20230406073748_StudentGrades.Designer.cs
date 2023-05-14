@@ -59,7 +59,7 @@ namespace DataLayer.Migrations
                         .HasColumnType("int");
 
                     b.Property<double>("Value")
-                        .HasColumnType("float");
+                        .HasColumnType("double");
 
                     b.HasKey("Id");
 

@@ -17,7 +17,7 @@ namespace DataLayer.Repositories
         public List<Room> GetAllFreeRooms()
         {
             var results = dbContext.Rooms
-                .Where(e => e.IsAvailableFrom >= DateTime.Today.Date
+                .Where(e => e.IsAvailableFrom <= DateTime.Today.Date
                 && e.Deleted == false)
                 .ToList();
 
@@ -27,7 +27,7 @@ namespace DataLayer.Repositories
         public List<Room> GetAllFreeRoomsForDate(DateTime date)
         {
             var results = dbContext.Rooms
-                .Where(e => e.IsAvailableFrom >= date.Date
+                .Where(e => e.IsAvailableFrom <= date.Date
                 && e.Deleted == false)
                 .ToList();
 
@@ -44,7 +44,7 @@ namespace DataLayer.Repositories
             return results;
         }
 
-        public List<Room> GetAllFreeRoomsCheaperThan(float price)
+        public List<Room> GetAllFreeRoomsCheaperThan(double price)
         {
             var results = dbContext.Rooms
                 .Where(e => e.Price <= price

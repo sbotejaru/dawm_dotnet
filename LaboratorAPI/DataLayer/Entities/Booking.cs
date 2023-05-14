@@ -9,5 +9,5 @@ public class Booking : BaseEntity
     public DateTime DateFrom { get; set; }
     public DateTime DateTo { get; set; }
     public bool Deleted { get; set; }
-    public float TotalPrice { get; set; }
+    public double TotalPrice { get; set; }
 }

@@ -8,5 +8,5 @@ public class Room : BaseEntity
     public string RoomType { get; set; }
     public DateTime IsAvailableFrom { get; set; }
     public bool Deleted { get; set; }
-    public float Price { get; set; }
+    public double Price { get; set; }
 }

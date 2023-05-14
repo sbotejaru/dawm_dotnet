@@ -17,7 +17,7 @@ namespace Project.Controllers
             this.UserService = UserService;
         }
 
-        [HttpGet("/get-all")]
+        [HttpGet("/get-all-users")]
         public ActionResult<List<User>> GetAll()
         {
             var result = UserService.GetAll();
@@ -25,7 +25,7 @@ namespace Project.Controllers
             return Ok(result);
         }
 
-        [HttpGet("/get/{UserId}")]
+        [HttpGet("/get-user/{UserId}")]
         public ActionResult<User> GetById(int UserId)
         {
             var result = UserService.GetById(UserId);
@@ -116,7 +116,7 @@ namespace Project.Controllers
             return Ok(result);
         }
 
-        [HttpPost("/add")]
+        [HttpPost("/add-user")]
         public IActionResult Add([FromBody] UserAddDto payload)
         {
             var result = UserService.AddUser(payload);

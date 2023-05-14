@@ -15,6 +15,6 @@ namespace Core.Dtos
         public DateTime DateTo { get; set; }
 
         [Required]
-        public float TotalPrice { get; set; }
+        public double TotalPrice { get; set; }
     }
 }
