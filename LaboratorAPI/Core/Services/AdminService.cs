@@ -1,6 +1,7 @@
 ﻿using Core.Dtos;
 using DataLayer;
 using DataLayer.Entities;
+using Infrastructure.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,7 +37,8 @@ namespace Core.Services
                 return false;
 
             var result = unitOfWork.Admins.GetById(payload.Id);
-            if (result == null) return false;
+            if (result == null)
+                throw new ResourceMissingException($"Admin with ID {payload.Id} doesn't exist");
 
             result.Name = payload.Name;
             unitOfWork.SaveChanges();

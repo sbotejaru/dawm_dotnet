@@ -1,6 +1,7 @@
 ﻿using Core.Dtos;
 using DataLayer;
 using DataLayer.Entities;
+using Infrastructure.Exceptions;
 using Microsoft.EntityFrameworkCore.Query;
 using System;
 using System.Collections.Generic;
@@ -24,9 +25,11 @@ namespace Core.Services
             if (payload == null) return null;
 
             var existingUserID = unitOfWork.Users.GetById(payload.UserID);
-            if (existingUserID == null) return null;
+            if (existingUserID == null)
+                throw new ResourceMissingException($"User with id {payload.UserID} doesn't exist.");
 
-            if (payload.Name == "" || payload.Name == null) return null;
+            if (payload.Name == "" || payload.Name == null)
+                throw new ResourceMissingException("Name is missing.");
 
 
             var newEmployee = new Employee
@@ -60,7 +63,7 @@ namespace Core.Services
 
             var result = unitOfWork.Employees.GetById(payload.Id);
             if (result == null)
-                return false;
+                throw new ResourceMissingException($"Employee with id {payload.Id} doesn't exist.");
 
             result.Name = payload.Name;
             unitOfWork.SaveChanges();
@@ -71,7 +74,7 @@ namespace Core.Services
         {
             var result = unitOfWork.Employees.GetById(employeeID);
             if (result == null)
-                return false;
+                throw new ResourceMissingException($"Employee with id {employeeID} doesn't exist.");
 
             result.Deleted = true;
             unitOfWork.SaveChanges();

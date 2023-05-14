@@ -1,6 +1,7 @@
 ﻿using Core.Dtos;
 using DataLayer;
 using DataLayer.Entities;
+using Infrastructure.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,11 +24,12 @@ namespace Core.Services
             if (payload == null) return null;
 
             var existingRoom = unitOfWork.Rooms.GetById(payload.RoomID);
-            if (existingRoom == null) return null;
+            if (existingRoom == null)
+                throw new ResourceMissingException($"Room with id {payload.RoomID} doesn't exist.");
 
             var existingCustomer = unitOfWork.Rooms.GetById(payload.CustomerID);
-            if (existingCustomer == null) return null;
-
+            if (existingCustomer == null)
+                throw new ResourceMissingException($"Customer with id {payload.CustomerID} doesn't exist.");
 
             var newBooking = new Booking
             {
@@ -78,10 +80,12 @@ namespace Core.Services
 
             var roomRes = unitOfWork.Rooms.GetById(payload.RoomID);
             if (roomRes == null)
-                return false;
+                throw new ResourceMissingException($"Room with id {payload.RoomID} doesn't exist.");
 
             var result = unitOfWork.Bookings.GetById(payload.ID);
-            if (result == null) return false;
+            if (result == null)
+                throw new ResourceMissingException($"Booking with id {payload.ID} doesn't exist.");
+
 
             result.TotalPrice = payload.TotalPrice;
             result.DateFrom = payload.DateFrom;
@@ -98,7 +102,8 @@ namespace Core.Services
 
             var result = unitOfWork.Bookings.GetById(payload.ID);
             if (result == null || payload.DateTo < result.DateFrom)
-                return false;
+                throw new ResourceMissingException($"Booking with id {payload.ID} doesn't exist, or" +
+                    $" the dates are invalid.");
 
             result.DateTo = payload.DateTo;
             result.TotalPrice = payload.TotalPrice;
@@ -113,11 +118,11 @@ namespace Core.Services
 
             var roomRes = unitOfWork.Rooms.GetById(payload.RoomID);
             if (roomRes == null)
-                return false;
+                throw new ResourceMissingException($"Room with id {payload.RoomID} doesn't exist.");
 
             var result = unitOfWork.Bookings.GetById(payload.ID);
             if (result == null)
-                return false;
+                throw new ResourceMissingException($"Booking with id {payload.ID} doesn't exist.");
 
             result.RoomID = payload.RoomID;
             result.TotalPrice = payload.TotalPrice;
@@ -132,7 +137,8 @@ namespace Core.Services
 
             var result = unitOfWork.Bookings.GetById(payload.ID);
             if (result == null || result.DateTo < payload.DateFrom)
-                return false;
+                throw new ResourceMissingException($"Booking with id {payload.ID} doesn't exist, or " +
+                    $"the dates are invalid.");
 
             result.DateFrom = payload.DateFrom;
             result.TotalPrice = payload.TotalPrice;
@@ -144,7 +150,7 @@ namespace Core.Services
         {
             var result = unitOfWork.Bookings.GetById(bookingID);
             if (result == null)
-                return false;
+                throw new ResourceMissingException($"Booking with id {bookingID} doesn't exist.");
 
             result.Deleted = true;
             unitOfWork.SaveChanges();

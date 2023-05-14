@@ -1,6 +1,7 @@
 ﻿using Core.Dtos;
 using DataLayer;
 using DataLayer.Entities;
+using Infrastructure.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,10 +24,11 @@ namespace Core.Services
             if (payload == null) return null;
 
             var existingUserID = unitOfWork.Users.GetById(payload.UserID);
-            if (existingUserID == null) return null;
+            if (existingUserID == null)
+                throw new ResourceMissingException($"User with id {payload.UserID} doesn't exist.");
 
-            if (payload.Name == "" || payload.Name == null) return null;
-
+            if (payload.Name == "" || payload.Name == null)
+                throw new ResourceMissingException($"Name is missing.");
 
             var newCustomer = new Customer
             {
@@ -59,7 +61,7 @@ namespace Core.Services
 
             var result = unitOfWork.Customers.GetById(payload.Id);
             if (result == null)
-                return false;
+                throw new ResourceMissingException($"Customer with id {payload.Id} doesn't exist.");
 
             result.Name = payload.Name;
             unitOfWork.SaveChanges();
@@ -70,7 +72,7 @@ namespace Core.Services
         {
             var result = unitOfWork.Customers.GetById(customerID);
             if (result == null)
-                return false;
+                throw new ResourceMissingException($"Customer with id {customerID} doesn't exist.");
 
             result.Deleted = true;
             unitOfWork.SaveChanges();
