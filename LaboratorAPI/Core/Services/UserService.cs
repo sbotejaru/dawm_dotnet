@@ -2,6 +2,7 @@
 using DataLayer;
 using DataLayer.Entities;
 using DataLayer.Enums;
+using Infrastructure.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -114,7 +115,9 @@ namespace Core.Services
             }
 
             var result = unitOfWork.Users.GetById(payload.Id);
-            if (result == null) return false;
+            if (result == null) 
+                      throw new ResourceMissingException($"User with id {payload.Id} doesn't exist");
+
 
             result.Password = payload.Password;
             unitOfWork.SaveChanges();
@@ -130,7 +133,9 @@ namespace Core.Services
             }
 
             var result = unitOfWork.Users.GetById(payload.Id);
-            if (result == null) return false;
+            if (result == null) 
+                throw new ResourceMissingException($"User with id {payload.Id} doesn't exist");
+
 
             result.RoleID = payload.Role;
             unitOfWork.SaveChanges();
@@ -142,7 +147,8 @@ namespace Core.Services
         {
             var result = unitOfWork.Users.GetById(UserID);
             if (result == null)
-                return false;
+                throw new ResourceMissingException($"User with id {UserID} doesn't exist");
+
 
             result.Deleted = true;
             unitOfWork.SaveChanges();

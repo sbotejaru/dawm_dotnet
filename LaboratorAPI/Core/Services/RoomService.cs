@@ -1,6 +1,7 @@
 ﻿using Core.Dtos;
 using DataLayer;
 using DataLayer.Entities;
+using Infrastructure.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -72,7 +73,9 @@ namespace Core.Services
             }
 
             var result = unitOfWork.Rooms.GetById(payload.ID);
-            if (result == null) return false;
+            if (result == null)
+                throw new ResourceMissingException($"Room with id {payload.ID} doesn't exist");
+
 
             result.IsAvailableFrom = payload.IsAvailableFrom;
             unitOfWork.SaveChanges();
@@ -89,7 +92,9 @@ namespace Core.Services
             }
 
             var result = unitOfWork.Rooms.GetById(payload.ID);
-            if (result == null) return false;
+            if (result == null)
+                throw new ResourceMissingException($"Room with id {payload.ID} doesn't exist");
+
 
             result.RoomNr = payload.RoomNr;
             unitOfWork.SaveChanges();
@@ -105,7 +110,10 @@ namespace Core.Services
             }
 
             var result = unitOfWork.Rooms.GetById(payload.ID);
-            if (result == null) return false;
+            if (result == null)
+                throw new ResourceMissingException($"Room with id {payload.ID} doesn't exist");
+
+
 
             result.Price = payload.Price;
             unitOfWork.SaveChanges();
@@ -121,7 +129,8 @@ namespace Core.Services
             }
 
             var result = unitOfWork.Rooms.GetById(payload.ID);
-            if (result == null) return false;
+            if (result == null) 
+                throw new ResourceMissingException($"Room with id {payload.ID} doesn't exist");
 
             result.RoomType = payload.RoomType;
             unitOfWork.SaveChanges();
@@ -133,7 +142,8 @@ namespace Core.Services
         {
             var result = unitOfWork.Rooms.GetById(RoomID);
             if (result == null)
-                return false;
+                throw new ResourceMissingException($"Room with id {RoomID} doesn't exist");
+
 
             result.Deleted = true;
             unitOfWork.SaveChanges();
