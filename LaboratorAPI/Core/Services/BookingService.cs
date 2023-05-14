@@ -139,5 +139,16 @@ namespace Core.Services
             return true;
         }
 
+        public bool DeleteBooking(int bookingID)
+        {
+            var result = unitOfWork.Bookings.GetById(bookingID);
+            if (result == null)
+                return false;
+
+            result.Deleted = true;
+
+            return true;
+        }
+
     }
 }

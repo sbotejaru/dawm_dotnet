@@ -64,5 +64,16 @@ namespace Core.Services
 
             return true;
         }
+
+        public bool DeleteCustomer(int customerID)
+        {
+            var result = unitOfWork.Customers.GetById(customerID);
+            if (result == null)
+                return false;
+
+            result.Deleted = true;
+
+            return true;
+        }
     }
 }
