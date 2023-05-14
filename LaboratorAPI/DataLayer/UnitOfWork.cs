@@ -4,9 +4,6 @@ namespace DataLayer
 {
     public class UnitOfWork
     {
-        public StudentsRepository Students { get; }
-        public ClassRepository Classes { get; }
-        public GradesRepository Grades { get; } 
         public AdminRepository Admins { get; }
         public BookingRepository Bookings { get; }
         public CustomerRepository Customers { get; }
@@ -21,9 +18,6 @@ namespace DataLayer
         public UnitOfWork
         (
             AppDbContext dbContext,
-            StudentsRepository studentsRepository,
-            ClassRepository classes,
-            GradesRepository grades,
             AdminRepository admins,
             BookingRepository bookings,
             CustomerRepository customers,
@@ -35,9 +29,6 @@ namespace DataLayer
         )
         {
             _dbContext = dbContext;
-            Students = studentsRepository;
-            Classes = classes;
-            Grades = grades;
             Admins = admins;
             Bookings = bookings;
             Customers = customers;

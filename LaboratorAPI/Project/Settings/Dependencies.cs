@@ -21,9 +21,6 @@ namespace Project.Settings
 
         private static void AddServices(IServiceCollection services)
         {
-            //services.AddScoped<StudentService>();
-           // services.AddScoped<ClassService>();
-           // services.AddScoped<GradeService>();
             services.AddScoped<AdminService>();
             services.AddScoped<BookingService>();
             services.AddScoped<CustomerService>();
@@ -35,9 +32,6 @@ namespace Project.Settings
 
         private static void AddRepositories(IServiceCollection services)
         {
-            //services.AddScoped<StudentsRepository>();
-            //services.AddScoped<ClassRepository>();
-            //services.AddScoped<GradesRepository>();
             services.AddScoped<AdminRepository>();
             services.AddScoped<BookingRepository>();
             services.AddScoped<CustomerRepository>();

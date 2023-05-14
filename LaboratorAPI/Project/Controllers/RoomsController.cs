@@ -1,6 +1,5 @@
 ﻿using Core.Dtos;
 using Core.Services;
-using DataLayer.Dtos;
 using DataLayer.Entities;
 using Microsoft.AspNetCore.Mvc;
 

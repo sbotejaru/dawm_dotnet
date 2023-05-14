@@ -1,6 +1,5 @@
 ﻿using Core.Dtos;
 using Core.Services;
-using DataLayer.Dtos;
 using DataLayer.Entities;
 using Microsoft.AspNetCore.Mvc;
 
@@ -114,7 +113,7 @@ namespace Project.Controllers
             return Ok(result);
         }
 
-        [HttpGet("/get-by-customer-id/{customerId")]
+        [HttpGet("/get-by-customer-id/{customerId}")]
         public ActionResult<List<Booking>> GetAllByCustomerId(int customerId)
         {
             var result = bookingService.GetByCustomerID(customerId);
