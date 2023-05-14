@@ -35,7 +35,8 @@ namespace Core.Services
                 RoomID = payload.RoomID,
                 DateFrom = payload.DateFrom,
                 DateTo = payload.DateTo,
-                TotalPrice = payload.TotalPrice
+                TotalPrice = payload.TotalPrice,
+                Deleted = false
             };
 
             unitOfWork.Bookings.Insert(newBooking);

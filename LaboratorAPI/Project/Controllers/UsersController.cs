@@ -2,12 +2,15 @@
 using Core.Services;
 using DataLayer.Entities;
 using DataLayer.Enums;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace Project.Controllers
 {
     [ApiController]
     [Route("api/user")]
+    [Authorize]
     public class UsersController : ControllerBase
     {
         private readonly UserService UserService;
@@ -15,6 +18,59 @@ namespace Project.Controllers
         public UsersController(UserService UserService)
         {
             this.UserService = UserService;
+        }
+
+        [HttpPost("/register")]
+        [AllowAnonymous]
+        public IActionResult Register(RegisterDto payload)
+        {
+            UserService.RegisterUser(payload);
+            return Ok();
+        }
+
+        [HttpPost("/login")]
+        [AllowAnonymous]
+        public IActionResult Login(LoginDto payload)
+        {
+            var jwtToken = UserService.Validate(payload);
+
+            return Ok(new { token = jwtToken });
+        }
+
+        [HttpGet("test-auth")]
+        public IActionResult TestLogin()
+        {
+            ClaimsPrincipal user = User;
+
+            var result = "";
+
+            foreach (var claim in user.Claims)
+            {
+                result += claim.Type + " : " + claim.Value + "\n";
+            }
+
+            return Ok(result);
+        }
+
+        [HttpGet("customers-only")]
+        [Authorize(Roles = "1")]
+        public ActionResult<string> HelloCustomers()
+        {
+            return Ok("Hello customers!");
+        }
+
+        [HttpGet("employees-only")]
+        [Authorize(Roles = "2")]
+        public ActionResult<string> HelloEmployees()
+        {
+            return Ok("Hello employees!");
+        }
+
+        [HttpGet("admins-only")]
+        [Authorize(Roles = "3")]
+        public ActionResult<string> HelloAdmins()
+        {
+            return Ok("Hello admins!");
         }
 
         [HttpGet("/get-all-users")]

@@ -34,7 +34,8 @@ namespace Core.Services
                 RoomNr = payload.RoomNr,
                 RoomType = payload.RoomType,
                 IsAvailableFrom = payload.IsAvailableFrom,
-                Price = payload.Price
+                Price = payload.Price,
+                Deleted = false
             };
 
             unitOfWork.Rooms.Insert(room);

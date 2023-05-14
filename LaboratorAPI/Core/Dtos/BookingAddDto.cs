@@ -23,8 +23,6 @@ namespace Core.Dtos
         [Required]
         public DateTime DateTo { get; set; }
 
-        public bool Deleted { get; set; }
-
         [Required]
         public double TotalPrice { get; set; }
     }

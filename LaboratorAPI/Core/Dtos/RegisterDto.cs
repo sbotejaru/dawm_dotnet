@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DataLayer.Enums;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -7,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace Core.Dtos
 {
-    public class CustomerAddDto
+    public class RegisterDto
     {
         [Required]
-        public int UserID { get; set; }
+        public string Username { get; set; }
 
         [Required]
-        public string Name { get; set; }
+        public string Password { get; set; }
     }
 }

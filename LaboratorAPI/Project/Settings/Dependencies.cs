@@ -28,6 +28,7 @@ namespace Project.Settings
             services.AddScoped<RoleService>();
             services.AddScoped<RoomService>();
             services.AddScoped<UserService>();
+            services.AddScoped<AuthorizationService>();
         }
 
         private static void AddRepositories(IServiceCollection services)

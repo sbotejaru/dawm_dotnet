@@ -18,8 +18,6 @@ namespace Core.Dtos
         [Required]
         public DateTime IsAvailableFrom { get; set; }
 
-        public bool Deleted { get; set; }
-
         [Required]
         public double Price { get; set; }
     }

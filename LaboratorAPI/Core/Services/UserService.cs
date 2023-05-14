@@ -15,9 +15,12 @@ namespace Core.Services
     public class UserService
     {
         private readonly UnitOfWork unitOfWork;
-        public UserService(UnitOfWork unitOfWork)
+        private AuthorizationService authService { get; set; }
+
+        public UserService(UnitOfWork unitOfWork, AuthorizationService authService)
         {
             this.unitOfWork = unitOfWork;
+            this.authService = authService;
         }
 
         public List<User> GetAll()
@@ -35,13 +38,51 @@ namespace Core.Services
             {
                 Username = payload.Username,
                 Password = payload.Password,
-                RoleID = payload.RoleID
+                RoleID = payload.RoleID,
+                Deleted = false
             };
 
             unitOfWork.Users.Insert(user);
             unitOfWork.SaveChanges();
 
             return payload;
+        }
+
+        public void RegisterUser(RegisterDto payload)
+        {
+            if (payload == null) return;
+
+            var hashedPassword = authService.HashPassword(payload.Password);
+
+            var user = new User
+            {
+                Username = payload.Username,
+                Password = hashedPassword,
+                RoleID = RoleType.Customer,
+                Deleted = false
+            };
+
+            unitOfWork.Users.Insert(user);
+            unitOfWork.SaveChanges();
+
+            //return payload;
+        }
+
+        public string Validate(LoginDto payload)
+        {
+            var user = unitOfWork.Users.GetByUsername(payload.Username);
+
+            var passwordFine = authService.VerifyHashedPassword(user.Password, payload.Password);
+
+            if (passwordFine)
+            {
+                return authService.GetToken(user);
+            }
+            else
+            {
+                return null;
+            }
+
         }
 
         public User GetUserByUsername(string username)

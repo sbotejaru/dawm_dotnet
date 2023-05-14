@@ -32,7 +32,8 @@ namespace Core.Services
             var newEmployee = new Employee
             {
                 UserID = payload.UserID,
-                Name = payload.Name
+                Name = payload.Name,
+                Deleted = false
             };
 
             unitOfWork.Employees.Insert(newEmployee);

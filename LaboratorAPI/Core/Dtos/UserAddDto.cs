@@ -18,7 +18,5 @@ namespace Core.Dtos
 
         [Required]
         public RoleType RoleID { get; set; }
-
-        public bool Deleted { get; set; }
     }
 }

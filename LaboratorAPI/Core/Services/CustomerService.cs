@@ -31,7 +31,8 @@ namespace Core.Services
             var newCustomer = new Customer
             {
                 UserID = payload.UserID,
-                Name = payload.Name
+                Name = payload.Name,
+                Deleted = false
             };
 
             unitOfWork.Customers.Insert(newCustomer);

@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace Core.Dtos
 {
-    public class CustomerAddDto
+    public class LoginDto
     {
         [Required]
-        public int UserID { get; set; }
+        public string Username { get; set; }
 
         [Required]
-        public string Name { get; set; }
+        public string Password { get; set; }
     }
 }
