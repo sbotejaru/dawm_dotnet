@@ -42,5 +42,10 @@ namespace Core.Services
 
             return true;
         }
+
+        public Admin GetById(int adminId)
+        {
+            return unitOfWork.Admins.GetById(adminId);
+        }
     }
 }
